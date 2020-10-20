@@ -123,9 +123,10 @@ app.get('/list/:status/:page', async (req, res, next) => {
 // 捕获异常中间件
 app.use((err, req, res, next) => {
     if (err) {
+        const {message}=err
         res.status(500)
             .json({
-                message: err.message
+                message: message||'服务器异常'
             })
     }
 })
